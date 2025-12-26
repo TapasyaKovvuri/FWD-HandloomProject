@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Cart - The Handloom Project</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
+
+body {
+  margin: 0;
+  font-family: "Lobster Two", cursive;
+  background: linear-gradient(to right,#d18662,#f3d19c,#d18662);
+}
+
+header {
+  background-color: #7f5539;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  position: relative;
+}
+
+#home{
+  color:white;
+  text-decoration: none;
+}
+
+#product{
+ color:white;
+  text-decoration: none;
+}
+
+.cart-icon {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+
+.cart-icon img {
+  width: 35px;
+}
+
+#cart-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background:#8f553f ;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.cart-container {
+  max-width: 900px;
+  margin: 30px auto;
+  background: rgb(254,233,207);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #fff0e0;
+  border-radius: 8px;
+}
+
+.cart-item h3 {
+  margin: 0;
+}
+
+.cart-item button {
+  padding: 5px 10px;
+  background-color: #7f5539;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart-item button:hover {
+  background-color: #8f553f;
+}
+
+.total {
+  text-align: right;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 20px;
+}
+
+footer {
+  background-color: #7f5539;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+footer button {
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px white;
+  font-family: "Lobster Two", cursive;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+footer button:hover {
+  background-color: #333;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>The Handloom Project</h1>
+  <a href="index.html">
+  <span id="home">Home</span></a>&nbsp;&nbsp;&nbsp;
+  <a href="page1.html">
+  <span id="product">Products</span></a>
+  <a href="cart.html" class="cart-icon">
+    <img src="cart.png" alt="Cart">
+    <span id="cart-count">0</span>
+  </a>
+</header>
+
+<div class="cart-container" id="cart-container">
+  <h2>Your Cart</h2>
+  <div id="cart-items"></div>
+  <div class="total" id="cart-total">Total: ₹0</div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br>
+<footer>
+  <button onclick="window.location.href='Home.html'">Continue Shopping</button>
+</footer>
+
+<script>
+function updateCartCount() {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+  document.getElementById("cart-count").innerText = totalQty;
+}
+
+function renderCart() {
+  const cartContainer = document.getElementById('cart-items');
+  const totalContainer = document.getElementById('cart-total');
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cartContainer.innerHTML = '';
+  let grandTotal = 0;
+
+  if (cart.length === 0) {
+    cartContainer.innerHTML = "<p>Your cart is empty 🛒</p>";
+    totalContainer.innerText = "Total: ₹0";
+    return;
+  }
+
+  cart.forEach((item, index) => {
+    item.qty = item.qty || 1; // safety
+
+    let itemTotal = item.price * item.qty;
+    grandTotal += itemTotal;
+
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML = `
+      <div>
+        <h3>${item.name}</h3>
+        <p>₹${item.price} × ${item.qty} = ₹${itemTotal}</p>
+      </div>
+      <div>
+        <button onclick="changeQty(${index}, -1)">-</button>
+        <button onclick="changeQty(${index}, 1)">+</button>
+        <button onclick="removeItem(${index})">Remove</button>
+      </div>
+    `;
+    cartContainer.appendChild(div);
+  });
+
+  totalContainer.innerText = `Total: ₹${grandTotal}`;
+}
+
+function changeQty(index, delta) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart[index].qty = (cart[index].qty || 1) + delta;
+
+  if (cart[index].qty <= 0) cart.splice(index, 1);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+  updateCartCount();
+}
+
+function removeItem(index) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+  updateCartCount();
+}
+
+window.onload = function () {
+  renderCart();
+  updateCartCount();
+};
+</script>
+
+
+</body>
+</html>

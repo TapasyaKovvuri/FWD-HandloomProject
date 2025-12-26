@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Handloom Project</title>
+
+ <style>
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
+
+body {
+  margin: 0;
+  font-family: "Lobster Two", cursive, sans-serif;
+  background: linear-gradient(to right,#d18662,#f3d19c,#d18662);
+}
+
+/* HEADER */
+header {
+  background-color: #7f5539;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+}
+
+.cart-icon {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+
+.cart-icon img {
+  width: 35px;
+}
+
+#cart-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background:#8f553f;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* PRODUCTS */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+.product {
+  background: rgb(254,233,207);
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 3px 3px black;
+  transition: 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+}
+
+.product img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.price {
+  font-weight: bold;
+  color: #7f5539;
+}
+
+.product button {
+  width: 100%;
+  padding: 10px;
+  background: #7f5539;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.product button:hover {
+  background: #8f553f;
+}
+
+.product {
+  background: rgba(254,233,207,0.95);
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transition: all 0.35s cubic-bezier(.25,.8,.25,1);
+  position: relative;
+  overflow: hidden;
+}
+
+.product::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  transform: skewX(-25deg);
+}
+
+.product:hover::before {
+  animation: shimmer 0.9s;
+}
+
+@keyframes shimmer {
+  100% {
+    left: 125%;
+  }
+}
+
+
+.product button {
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.product:hover button {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+/* FOOTER */
+footer {
+  background-color: #7f5539;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+footer button{
+ background-color: black;
+ color: white;
+ box-shadow: 0 1px 3px white;
+ border-radius: 15px;
+ font-family: "Lobster Two", cursive, sans-serif;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>The Handloom Project</h1>
+  <a href="cart.html" class="cart-icon">
+    <img src="cart.png" alt="Cart">
+    <span id="cart-count">0</span>
+  </a>
+</header>
+
+<section class="products">
+
+  <!-- Existing + New Sarees -->
+
+  <div class="product">
+    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSzvsjZJlIwgaFCK9A3XmdqHliNS94xj3McYF8lIHJE-ew_5xQ-NqepmXYQ2oIVBQZtc8jVcIJpUjo4JvRB8JeVG0fviVKcwJd-I_6GXCoxigfSPUuTjWIo">
+    <h3>Pochampally Ikat Saree</h3>
+    <p class="price">₹3800</p>
+    <button onclick="addToCart('Pochampally Ikat Saree',3800)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://www.indiansilkhouseagencies.com/cdn/shop/files/8500000107973Z2-1.jpg?v=1764762591&width=700">
+    <h3>Baluchari Silk Saree</h3>
+    <p class="price">₹4200</p>
+    <button onclick="addToCart('Baluchari Silk Saree',4200)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT4qYSXqGcr_cJaspNFe7NC_AnnmnVDUZZTAHP0SyKypwV4C2i0_TNhq_i7tgjWb6LCq7ttk-G4Q80NhEYxlEL1O6Mp1lL6AjYChJI1AvA">
+    <h3>Paithani Silk Saree</h3>
+    <p class="price">₹5500</p>
+    <button onclick="addToCart('Paithani Silk Saree',5500)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://monamaar.com/cdn/shop/files/WhatsAppImage2025-08-06at12.38.25PM.jpg?v=1754469874&width=1080">
+    <h3>Kota Doria Saree</h3>
+    <p class="price">₹2500</p>
+    <button onclick="addToCart('Kota Doria Saree',2500)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRz3HdS4Lm9Ctkvb5Ne3JfNfYi5LiLZ0e434rQGZITJqYPaZHaAj85kRakxTlrXxVBaT5r_7aFEIL_8hrWNgarqLTprSAhWO9aIybavoQM">
+    <h3>Ilkal Silk Saree</h3>
+    <p class="price">₹3200</p>
+    <button onclick="addToCart('Ilkal Silk Saree',3200)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://www.prashantisarees.com/cdn/shop/files/EFG2857.jpg?crop=center&height=1439&v=1765278558&width=1066">
+    <h3>Chettinad Cotton Saree</h3>
+    <p class="price">₹2000</p>
+    <button onclick="addToCart('Chettinad Cotton Saree',2000)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://madrassarees.com/cdn/shop/files/Darkchocolate-Raagasemitussarbavanjiborder_3_1024x1024.webp?v=1754653433">
+    <h3>Bhagalpuri Tussar Saree</h3>
+    <p class="price">₹2000</p>
+    <button onclick="addToCart('Bhagalpuri Tussar Saree',2000)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://www.vastranand.in/cdn/shop/files/1_5b7cef28-ff1e-47fa-83e2-826d65a2593b.jpg?v=1743069753&width=1000">
+    <h3>Dharmavaram Silk Saree</h3>
+    <p class="price">₹4800</p>
+    <button onclick="addToCart('Dharmavaram Silk Saree',4800)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://handloomemporium.com/cdn/shop/files/B80A02B1-2BDE-42B2-87DF-B03ED6316BF0.jpg?v=1748426107&width=1920">
+    <h3>Chikankari Cotton Saree</h3>
+    <p class="price">₹2300</p>
+    <button onclick="addToCart('Chikankari Cotton Saree',2300)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQl2CehYD8qmf1VADfkig-AMNzLKtitmmK0iURaXFdIfW6nb7V2ZsZMvtsjchSyD8i7kdlqJMm-eqOtfbwGiSn7ioirCz8oaDaEDSMr8xI">
+    <h3>Patola Double Ikat Saree</h3>
+    <p class="price">₹15000</p>
+    <button onclick="addToCart('Patola Double Ikat Saree',15000)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQDgJ4rfaMPf0aE0xlyQI7UM73956067_pxq9nC4Y_Slk5LuTKBq4wbwGwRkEuUdPcP24YWmWMaVxMPUTcHGT4ZbfWid0WuazPk2-_3eKcG6FAfjF_crBmF">
+    <h3>Sambalpuri Ikat Saree</h3>
+    <p class="price">₹3800</p>
+    <button onclick="addToCart('Sambalpuri Ikat Saree',3800)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTQ2nJeIRirV8UDXPxIcAVPun_bud4yODJtXjTiQMLhoroYzoYImhnj5oJzOS13h1z_n61QrSctBWecBPbHUNv8tS-IkFPaLV5j6R6ax54KCqN7iMWR6-VVDw">
+    <h3>Narayanpet Cotton Saree</h3>
+    <p class="price">₹2200</p>
+    <button onclick="addToCart('Narayanpet Cotton Saree',2200)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSwSuwOT3CjzJMpYZKxJfSrWQZOuJiwtAuwXXTSBmK0hKkqi976PzNakqmIYv_dBeWZWK_qSx76IJQNAx1ZBcbhspVZemgNJEbTwy1W0j2EqDQEMYVl7CVz">
+    <h3>Kullu Woolen Saree</h3>
+    <p class="price">₹2085</p>
+    <button onclick="addToCart('Kullu Woolen Saree',2085)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://m.media-amazon.com/images/I/21HzjGKZf4L.jpg">
+    <h3>Arani Silk Saree</h3>
+    <p class="price">₹4600</p>
+    <button onclick="addToCart('Arani Silk Saree',4600)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://vaardaram.com/cdn/shop/products/20221108_154014.jpg?v=1671287581&width=1920">
+    <h3>Bishnupuri Silk Saree</h3>
+    <p class="price">₹6500</p>
+    <button onclick="addToCart('Bishnupuri Silk Saree',6500)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://siricollections.in/cdn/shop/products/FS1132_1080x1080.jpg?v=1677836599">
+    <h3>Kota Silk Saree</h3>
+    <p class="price">₹3000</p>
+    <button onclick="addToCart('Kota Silk Saree',3000)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRyk3YA25K-BCgUFXyDQucy6YgSZMiHAuqhg9o5SV91evYk8ngMaI7-huzM5EeIi_DUROiQAgAXS7x0sfu0F_1IcueXlnDhcDHSn5fzKmQ6Xf-aqItv_vpG">
+    <h3>Shibori Dyed Saree</h3>
+    <p class="price">₹3133</p>
+    <button onclick="addToCart('Shibori Dyed Saree',3133)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQDa4VB6OL9bKvsaNAFzdKxMhiMtjix2mqfG-mGn0shi02RbhomoG0MW-VXIc3xaMbCBhJBAtR1JzdL80OL-v9LkAfMrSt3DeUMGj7DXXmo">
+    <h3>Ajrakh Print Saree</h3>
+    <p class="price">₹3600</p>
+    <button onclick="addToCart('Ajrakh Print Saree',3600)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://shop.gaatha.com/image/catalog/Gaatha/01.jpg">
+    <h3>Eri Silk Saree</h3>
+    <p class="price">₹12000</p>
+    <button onclick="addToCart('Eri Silk Saree',12000)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://amounee.com/cdn/shop/files/1739200444868671139.jpg?v=1739200453">
+    <h3>Phulkari Saree</h3>
+    <p class="price">₹8900</p>
+    <button onclick="addToCart('Phulkari Saree',8900)">Add to Cart</button>
+  </div>
+
+</section>
+
+<footer>
+  <p>© 2025 The Handloom Project. All rights reserved.</p>
+  <p>Every thread tells a story.</p>
+  <button onclick="window.location.href='index.html'">Home</button>
+  <button onclick="window.location.href='page1.html'">1</button>
+  <button onclick="window.location.href='page2.html'">2</button>
+  <button onclick="window.location.href='page3.html'">3</button>
+  <button onclick="window.location.href='About.html'">Next</button>
+</footer>
+
+<script>
+
+
+function getCart() {
+  return JSON.parse(localStorage.getItem("cart")) || [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function addToCart(name, price) {
+  let cart = getCart();
+
+  let item = cart.find(p => p.name === name);
+
+  if (item) {
+    item.qty += 1;
+  } else {
+    cart.push({
+      name: name,
+      price: price,
+      qty: 1
+    });
+  }
+
+  saveCart(cart);
+  updateCartCount();
+  alert(name + " added to cart");
+}
+
+function updateCartCount() {
+  let cart = getCart();
+  let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+
+  const countEl = document.getElementById("cart-count");
+  if (countEl) {
+    countEl.innerText = totalQty;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", updateCartCount);
+</script>
+</body>
+</html>

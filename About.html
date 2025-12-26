@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - Global Handloom Market</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
+
+body{
+  font-family:"Lobster Two", cursive;
+  margin: 0;
+  padding: 0;
+  font-size: medium;
+  background: linear-gradient(to right,#d18662,#f3d19c,#d18662);
+  color: #333;
+}
+
+/* HEADER */
+header {
+  background-color: #7f5539;
+  color: #fff;
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  text-align: center;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* ABOUT SECTION */
+.about {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.about h2 {
+  text-align: center;
+}
+
+.about p {
+  text-align: justify;
+  line-height: 1.6;
+}
+
+/* ARTISANS */
+.artisan {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background-color: rgb(254, 233, 207);
+  border-radius: 30px;
+  box-shadow: 0px 1px 2px black;
+  padding: 30px;
+  text-align: center;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 15px black;
+}
+
+.card p {
+  text-align: justify;
+}
+
+/* FOOTER */
+footer {
+  background-color: #7f5539;
+  color: white;
+  padding: 1rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>About Our Mission</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="page1.html">Products</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="about">
+  <h2>Empowering Handloom Artisans</h2>
+  <p>
+    Global Handloom Market is a digital platform designed to connect artisans from rural areas 
+    with global buyers who value craftsmanship, tradition, and sustainability.
+    Our mission is to preserve the beauty of handloom weaving, promote fair trade, 
+    and ensure artisans get the recognition and income they deserve.
+  </p>
+</section>
+
+<section>
+  <h2 style="text-align:center;">Meet the Artisans</h2>
+  <div class="artisan">
+    <div class="card">
+      <h3>Artisan 1</h3>
+      <h4>Lakshmi from Kanchipuram</h4>
+      <p>
+        Kanchipuram is the center for the production of Kanjeevaram silk sarees, known for their
+        vibrant colors and intricate traditional designs.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Artisan 2</h3>
+      <h4>Sita from Venkatagiri</h4>
+      <p>
+        Venkatagiri is famous for its handloom cotton and silk sarees with fine texture and
+        elegant zari work.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Artisan 3</h3>
+      <h4>Ravi from Mangalagiri</h4>
+      <p>
+        Mangalagiri sarees are known for their crisp finish, solid colors, and minimalistic
+        borders woven with zari threads.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 The Handloom Project. All rights reserved.</p>
+  <p>Every thread tells a story.</p>
+</footer>
+
+</body>
+</html>
